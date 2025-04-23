@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fafafa;
+  }
+  
+  .header {
+    background-color: #583319;
+    color: white;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title {
+    font-size: 40px;
+    font-weight: 700;
+  }
+  
+  .title .highlight {
+    color: #fca311;
+  }
+  
+  .subtitle {
+    color: #fca311;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  
+  .botao {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+  }
+  
+  .botao a {
+    color: white;
+    text-decoration: none;
+    font-weight: 525;
+  }
+  
+  .profile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* --------- AQUI O AJUSTE DE LAYOUT DOS CARDS --------- */
+  
+  .card-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 60px 80px;
+  }
+
+  .card-line {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    width: 100%;
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #fca311;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 400px; /* <- deixa altura padronizada */
+    width: 325px;
+  }
+  
+  .card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  
+  .card p {
+    font-size: 14.5px;
+    color: #5f5f5f;
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .footer {
+    background-color: #4b2a0a;
+    color: #fca311;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px 10px;
+    font-size: 13px;
+    margin-top: 60px;
+  }
+  
+  .footer a {
+    color: #fca311;
+    text-decoration: underline;
+  }
+  
+  .footer a:hover {
+    color: #ffb84d;
+  }
+  
+  

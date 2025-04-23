@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('img/pexels-asphotograpy-1002703.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+header {
+    position: relative;
+    height: 100vh;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    padding-top: 20%;
+}
+
+button {
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 65px;
+    font-weight: bold;
+    color: white;
+    background-color: #054e0f;
+    border: none;
+    border-radius: 75px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    scale: 1.05;
+    transition: 0.3 ease-in-out;
+}
