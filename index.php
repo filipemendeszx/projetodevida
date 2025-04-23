@@ -81,6 +81,14 @@ switch ($action) {
                     header("Location: index.php?action=senha");
                 }
                 break;
+                case 'metas':
+                    if (isset($_COOKIE['user_id'])) {
+                        $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+                        include 'views/metas.php';
+                    } else {
+                        header("Location: index.php?action=senha");
+                    }
+                    break;
         case 'senha':
             if (isset($_COOKIE['user_id'])) {
                 $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
