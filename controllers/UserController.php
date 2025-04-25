@@ -1,14 +1,15 @@
 <?php
-include_once 'models/UserModel.php';
+include_once 'C:\Turma2\xampp\htdocs\projetodevida\models\UserModel.php';
 
 class UserController {
     private $Model;
 
-    public function __construct($pdo) {
-        $this->Model = new UserModel($pdo);
+    public function __construct() {
+        $this->Model = new UserModel();
     }
 
-    public function register($nome, $email, $senha) {
+    public function register($nome, $email, $senha): bool
+    {
         if($this->Model->acharEmail($email)){
             return false;
         }
@@ -20,20 +21,31 @@ class UserController {
         return true;
     }
 
-    public function login($email, $senha) {
+    public function login($email, $senha): bool
+    {
 
         $user = $this->Model->login($email,$senha);
         if ($user){
             echo $_COOKIE['user_id'];
             setcookie('user_id', $user['id_user']);
-            setcookie('user_name', $user['nome']);
+            setcookie('user_email', $user['email']);
+            setcookie('user_nome', $user['nome']);
             return true;
+        } else {
+            return false;
         }
-        return;
+    }
+
+    public function salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user) {
+        $this->Model->salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user);
     }
 
     public function trocarSenha($email, $senha) {
         $this->Model->trocarSenha($email, $senha);
     }
+
+    public function buscarPorId($user_id) {
+        return $this->Model->buscarPorId($user_id);
+    }
 }
-?>
+

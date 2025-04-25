@@ -1,14 +1,19 @@
 <?php
-class UserModel {
+
+class UserModel
+{
     private $pdo;
     private $table_name = "usuarios";
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        $database = new Database();
+        $this->pdo = $database->getConnection();
     }
 
     // Método para cadastrar um usuário
-    public function cadastrar($nome,$email,$senha) {
+    public function cadastrar($nome, $email, $senha)
+    {
         $query = "INSERT INTO " . $this->table_name . " (nome, email, senha) VALUES (?, ?, ?)";
         $stmt = $this->pdo->prepare($query);
 
@@ -17,11 +22,12 @@ class UserModel {
         $email = htmlspecialchars(strip_tags($email));
         $senha = password_hash($senha, PASSWORD_DEFAULT);
 
-        $stmt->execute([$nome,$email,$senha]);
-        
+        $stmt->execute([$nome, $email, $senha]);
+
     }
 
-    public function trocarSenha($email,$senha) {
+    public function trocarSenha($email, $senha)
+    {
         $query = "UPDATE " . $this->table_name . " SET senha = ? WHERE email = ?";
         $stmt = $this->pdo->prepare($query);
 
@@ -30,36 +36,37 @@ class UserModel {
         $senha = password_hash($senha, PASSWORD_DEFAULT);
 
         $stmt->execute([$senha, $email]);
-        
+
     }
 
-    public function acharEmail($email){
+    public function acharEmail($email)
+    {
         $query = "SELECT * FROM " . $this->table_name . " WHERE email = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$email]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function acharNome($nome){
+    public function acharNome($nome)
+    {
         $query = "SELECT * FROM " . $this->table_name . " WHERE nome = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$nome]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Método para login de um usuário
-    public function login($email,$senha) {
+    public function login($email, $senha)
+    {
         $query = "SELECT * FROM " . $this->table_name . " WHERE email = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$email]);
 
         $useremail = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        
+
         if ($useremail && password_verify($senha, $useremail['senha'])) {
             return $useremail;
         }
@@ -69,11 +76,48 @@ class UserModel {
         $stmt->execute([$email]);
 
         $usernome = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($usernome && $usernome['senha'] == $senha) {
             return $usernome;
         }
         return false;
     }
+
+    public function salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user)
+    {
+
+        $aptidoes = json_encode($aptidoes);
+        $query = "UPDATE " . $this->table_name . " 
+        SET nome = ?, 
+            nascimento = ?, 
+            sobre = ?, 
+            lembrancas = ?, 
+            valores = ?, 
+            aptidoes = ?, 
+            familia = ?, 
+            amigos = ?, 
+            escola = ?, 
+            sociedade = ?, 
+            fisica = ?, 
+            intelectual = ?, 
+            emocional = ?, 
+            vida_escolar = ?, 
+            gosto = ?, 
+            nao_gosto = ?, 
+            rotina = ?, 
+            lazer = ?, 
+            estudos = ? 
+        WHERE id_user = ?";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user]);
+    }
+
+    public function buscarPorId($user_id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id_user = ?";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
-?>
+
+

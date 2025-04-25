@@ -4,8 +4,8 @@ include_once 'models/MusicModel.php';
 class MusicController {
     private $model;
 
-    public function __construct($pdo) {
-        $this->model = new musicModel($pdo);
+    public function __construct() {
+        $this->model = new musicModel();
     }
     public function listarMusicas() {
         return $this->model->listarMusicas();

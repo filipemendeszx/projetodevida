@@ -2,7 +2,7 @@
 require_once 'Database.php';
 require_once 'controllers/MusicController.php';
 
-$controller = new MusicController($pdo);
+$controller = new MusicController();
 
 $musicas = $controller->listarMusicas();
 $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
@@ -27,7 +27,7 @@ $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
       <a href="#">Início</a>
       <a href="index.php?action=sobre">Sobre mim &#9662;</a>
       <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
-      <a href="index.php?action=logout">sair</a>
+      <a href="../index.php?action=logout">sair</a>
     </nav>
   </header>
     <section class="card-section">

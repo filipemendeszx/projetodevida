@@ -1,4 +1,5 @@
 <?php
+require_once 'Database.php';
 class MusicModel {
     private $pdo;
     private $table_name = "artigos";
@@ -8,9 +9,10 @@ class MusicModel {
     public $assunto;
     public $texto;
 
-
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        $database = new Database();
+        $this->pdo = $database->getConnection();
     }
 
     // Método para criar uma musica
