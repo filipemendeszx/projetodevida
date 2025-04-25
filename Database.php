@@ -1,6 +1,6 @@
 <?php
     $host = "localhost";
-    $db_name = "music";
+    $db_name = "projetovida";
     $username = "root";
     $password = "";
     $pdo;

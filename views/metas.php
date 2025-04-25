@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Tomando Decisões</title>
-  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
       <div class="subtitle">Filipe Mendes</div>
     </div>
     <nav class="botao">
-      <a href="#">Início</a>
+      <a href="index.php?action=home">Início</a>
       <a href="index.php?action=sobre">Sobre mim &#9662;</a>
       <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
       <a href="index.php?action=logout">sair</a>

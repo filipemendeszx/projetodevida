@@ -1,39 +1,44 @@
 <?php
 include_once 'models/UserModel.php';
 
-class UserController {
+class UserController
+{
     private $Model;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->Model = new UserModel($pdo);
     }
 
-    public function register($nome, $email, $senha) {
-        if($this->Model->acharEmail($email)){
+    public function register($nome, $email, $senha)
+    {
+        if ($this->Model->acharEmail($email)) {
             return false;
         }
-        if($this->Model->acharNome($nome)){
+        if ($this->Model->acharNome($nome)) {
             return false;
         }
-        
-        $this->Model->cadastrar($nome,$email,$senha);
+
+        $this->Model->cadastrar($nome, $email, $senha);
         return true;
     }
 
-    public function login($email, $senha) {
+    public function login($email, $senha)
+    {
+        session_start();
+        $user = $this->Model->login($email, $senha);
+        if ($user) {
 
-        $user = $this->Model->login($email,$senha);
-        if ($user){
-            echo $_COOKIE['user_id'];
-            setcookie('user_id', $user['id_user']);
-            setcookie('user_name', $user['nome']);
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+
             return true;
         }
         return;
     }
 
-    public function trocarSenha($email, $senha) {
+    public function trocarSenha($email, $senha)
+    {
         $this->Model->trocarSenha($email, $senha);
     }
 }
-?>

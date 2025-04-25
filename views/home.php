@@ -1,11 +1,5 @@
 <?php
 require_once 'Database.php';
-require_once 'controllers/MusicController.php';
-
-$controller = new MusicController($pdo);
-
-$musicas = $controller->listarMusicas();
-$suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +18,7 @@ $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
       <div class="subtitle">Filipe Mendes</div>
     </div>
     <nav class="botao">
-      <a href="#">Início</a>
+      
       <a href="index.php?action=sobre">Sobre mim &#9662;</a>
       <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
       <a href="index.php?action=logout">sair</a>
@@ -41,7 +35,7 @@ $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
             Descubra mais sobre você agora!
           </p>
         </div>
-        <a href="./views/quemsoueu.php">
+        <a href="index.php?action=quemsoueu">
         <div class="card">
           <h2>Quem sou eu ?</h2>
           <p>
@@ -52,7 +46,7 @@ $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
           </p>
         </div></a>
     </div>
-
+<a href="index.php?action=planejamento">
     <div class="card-line">
         <div class="card">
           <h2>Planejamento de futuro</h2>
@@ -62,8 +56,8 @@ $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
             Mais do que planejar cada passo, é importante se conhecer, entender o que faz sentido e seguir com propósito.
             Não existe um caminho certo — existe o seu caminho. E ele começa agora.
           </p>
-        </div>
-        <div class="card">
+        </div></a>
+       <a href="index.php?action=metas"> <div class="card">
           <h2>Plano de Ação<br>(Tomando Decisões)</h2>
           <p>
             Tomar decisões nem sempre é fácil, mas é essencial para quem deseja transformar sonhos em realidade.
@@ -72,7 +66,7 @@ $suasmusicas = $controller->listarMusicasPorUserId($_COOKIE['user_id']);
             Decidir é ter coragem de sair do lugar, mesmo com medo.
             É assumir o controle da própria história e seguir com intenção. O futuro começa quando a gente escolhe se mover.
           </p>
-        </div>
+        </div></a>
     </div>
   </section>
 

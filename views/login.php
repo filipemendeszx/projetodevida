@@ -22,7 +22,7 @@
                 <br>
                 <form action="index.php?action=login" method="post">
                     <h6>E-mail</h6>
-                    <input type="text" name="email" placeholder="Email ou nome de usuário" required>
+                    <input type="text" name="email" placeholder="Email " required>
                     <H5>Senha</H5>
                     <input type="password" name="senha" placeholder="Senha" required>
                     <button type="submit" class="login-btn">Entrar</button>

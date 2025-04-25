@@ -1,7 +1,7 @@
 <?php
 class UserModel {
     private $pdo;
-    private $table_name = "usuarios";
+    private $table_name = "user";
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
@@ -9,7 +9,7 @@ class UserModel {
 
     // Método para cadastrar um usuário
     public function cadastrar($nome,$email,$senha) {
-        $query = "INSERT INTO " . $this->table_name . " (nome, email, senha) VALUES (?, ?, ?)";
+        $query = "INSERT INTO " . $this->table_name . " (name, email, password_hash) VALUES (?, ?, ?)";
         $stmt = $this->pdo->prepare($query);
 
         // Sanitiza os dados e criptografa a senha
@@ -22,7 +22,7 @@ class UserModel {
     }
 
     public function trocarSenha($email,$senha) {
-        $query = "UPDATE " . $this->table_name . " SET senha = ? WHERE email = ?";
+        $query = "UPDATE " . $this->table_name . " SET password_hash = ? WHERE email = ?";
         $stmt = $this->pdo->prepare($query);
 
         // Sanitiza os dados e criptografa a senha
@@ -43,7 +43,7 @@ class UserModel {
     }
 
     public function acharNome($nome){
-        $query = "SELECT * FROM " . $this->table_name . " WHERE nome = ?";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE name = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$nome]);
 
@@ -60,11 +60,11 @@ class UserModel {
         $useremail = $stmt->fetch(PDO::FETCH_ASSOC);
 
         
-        if ($useremail && password_verify($senha, $useremail['senha'])) {
+        if ($useremail && password_verify($senha, $useremail['password_hash'])) {
             return $useremail;
         }
 
-        $query = "SELECT * FROM " . $this->table_name . " WHERE nome = ?";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE name = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$email]);
 

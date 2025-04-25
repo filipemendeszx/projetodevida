@@ -13,7 +13,7 @@ switch ($action) {
             $nome = $_POST['nome'];
             $email = $_POST['email'];
             $senha = $_POST['senha'];
-            
+
             if ($controller->register($nome, $email, $senha)) {
                 header("Location: index.php?action=login");
             } else {
@@ -52,55 +52,68 @@ switch ($action) {
         session_destroy();
         header("Location: index.php?action=login");
         break;
-    case 'perfil':
+    case 'sobre':
         if (isset($_COOKIE['user_id'])) {
-            include 'views/perfil.php';
+            include 'views/sobre.php';
         } else {
-            header("Location: index.php?action=perfil");
+            header("Location: index.php?action=home");
         }
         break;
-        case 'sobre':
-            if (isset($_COOKIE['user_id'])) {
-                include 'views/sobre.php';
-            } else {
-                header("Location: index.php?action=home");
-            }
-            break;
-            case 'quemsoueu':
-            if (isset($_COOKIE['user_id'])) {
-                include 'views/quemsoueu.php';
-            } else {
-                header("Location: index.php?action=home");
-            }
-            break;
-            case 'projeto':
-                if (isset($_COOKIE['user_id'])) {
-                    $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
-                    include 'views/projeto.php';
-                } else {
-                    header("Location: index.php?action=senha");
-                }
-                break;
-                case 'metas':
-                    if (isset($_COOKIE['user_id'])) {
-                        $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
-                        include 'views/metas.php';
-                    } else {
-                        header("Location: index.php?action=senha");
-                    }
-                    break;
-        case 'senha':
-            if (isset($_COOKIE['user_id'])) {
-                $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
-                include 'views/senha.php';
-            } else {
-                header("Location: index.php?action=senha");
-            }
-            break;
+    case 'quemsoueu':
+        if (isset($_COOKIE['user_id'])) {
+            include 'views/quemsoueu.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+    case 'projeto':
+        if (isset($_COOKIE['user_id'])) {
+            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+            include 'views/projeto.php';
+        } else {
+            header("Location: index.php?action=senha");
+        }
+        break;
+    case 'metas':
+        if (isset($_COOKIE['user_id'])) {
+            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+            include 'views/metas.php';
+        } else {
+            header("Location: index.php?action=senha");
+        }
+        break;
+    case 'senha':
+        if (isset($_COOKIE['user_id'])) {
+            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+            include 'views/senha.php';
+        } else {
+            header("Location: index.php?action=senha");
+        }
+        break;
+    case 'planejamento':
+        if (isset($_COOKIE['user_id'])) {
+            include 'views/planejamento.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+    case 'perfil':
+        if (isset($_COOKIE['user_id'])) {
+            include 'view/perfil.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+    case 'salvar':
+        if (isset($_COOKIE['user_id'])) {
+            include 'ajax/salvar.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+
 
     default:
         header("Location: index.php?action=login");
         break;
 }
-
-?>
