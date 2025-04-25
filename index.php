@@ -9,7 +9,7 @@ $controller = new UserController();
 
 switch ($action) {
     case 'register':
-        if (!empty($_POST)) {
+        if (isset($_POST)) {
             $nome = $_POST['nome'];
             $email = $_POST['email'];
             $senha = $_POST['senha'];
@@ -17,6 +17,7 @@ switch ($action) {
             if ($controller->register($nome, $email, $senha)) {
                 header("Location: index.php?action=login");
             } else {
+                var_dump($_POST);
                 echo "Erro ao cadastrar usuário.";
             }
         } else {
@@ -25,7 +26,7 @@ switch ($action) {
         break;
 
     case 'login':
-
+        var_dump($_COOKIE);
         if (!empty($_POST)) {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
@@ -50,7 +51,8 @@ switch ($action) {
 
     case 'logout':
         session_destroy();
-        unset($_COOKIE);
+        unset($_COOKIE['user_id']);
+        unset($_COOKIE['user_name']);
         header("Location: index.php?action=login");
         break;
     case 'sobre':
@@ -112,8 +114,7 @@ switch ($action) {
             header("Location: index.php?action=home");
         }
         break;
-            header("Location: index.php?action=perfil");
-        }
+        header("Location: index.php?action=perfil");
         break;
     case 'sobre':
         if (isset($_COOKIE['user_id'])) {
@@ -183,12 +184,11 @@ switch ($action) {
             header("Location: index.php?action=login");
         }
         break;
-
-    default:
-        if (isset($_COOKIE['user_id'])) {
-            header("Location: index.php?action=home");
-        } else {
-            header("Location: index.php?action=login");
-        }
-        break;
+        // default:
+        //     if (isset($_COOKIE['user_id'])) {
+        //         header("Location: index.php?action=home");
+        //     } else {
+        //         header("Location: index.php?action=logar");
+        //     }
+        //     break;
 }

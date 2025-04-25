@@ -3,12 +3,12 @@ require_once('../config/conn.php');
 session_start();
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_COOKIE['user_id'])) {
     header('Location: login.php');
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_COOKIE['user_id'];
 
 // Coleta os dados do formulário
 $nome = $_POST['nome'] ?? '';

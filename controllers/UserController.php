@@ -14,28 +14,29 @@ class UserController
         if($this->Model->acharEmail($email)){
             return false;
         }
-        if ($this->Model->acharNome($nome)) {
+
+        if($this->Model->acharNome($nome)){
             return false;
         }
-
-        $this->Model->cadastrar($nome, $email, $senha);
+        
+        $this->Model->cadastrar($nome,$email,$senha);
         return true;
     }
 
-    public function login($email, $senha)
+    public function login($email, $senha): bool
     {
-        session_start();
-        $user = $this->Model->login($email, $senha);
-        if ($user) {
-
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-
+        $user = $this->Model->login($email,$senha);
+        
+        if ($user){
+            setcookie('user_id', $user['id_user']);
+            setcookie('user_email', $user['email']);
+            setcookie('user_nome', $user['nome']);
             return true;
         } else {
             return false;
         }
     }
+
 
     public function salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user) {
         $this->Model->salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user);

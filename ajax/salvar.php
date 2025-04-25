@@ -2,12 +2,12 @@
 require_once('config/conn.php');
 
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_COOKIE['user_id'])) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Usuário não logado']);
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_COOKIE['user_id'];
 
 if (isset($_FILES['foto'])) {
     $foto = $_FILES['foto'];
