@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/02/2025 às 02:01
+-- Tempo de geração: 25/04/2025 às 15:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -119,6 +119,24 @@ CREATE TABLE `usuarios` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) NOT NULL,
+  `nascimento` date DEFAULT NULL,
+  `sobre` text NOT NULL,
+  `lembrancas` text NOT NULL,
+  `valores` int(11) NOT NULL,
+  `aptidoes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`aptidoes`)),
+  `familia` text NOT NULL,
+  `amigos` text NOT NULL,
+  `escola` varchar(255) NOT NULL,
+  `sociedade` text NOT NULL,
+  `fisica` text NOT NULL,
+  `intelectual` text NOT NULL,
+  `emocional` text NOT NULL,
+  `vida_escolar` text NOT NULL,
+  `gosto` text NOT NULL,
+  `nao_gosto` text NOT NULL,
+  `rotina` text NOT NULL,
+  `lazer` text NOT NULL,
+  `estudos` text NOT NULL,
   `data_criacao` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -126,8 +144,9 @@ CREATE TABLE `usuarios` (
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_user`, `nome`, `email`, `senha`, `data_criacao`) VALUES
-(20, '1', '1@gmail', '1', '2025-02-26 13:37:19');
+INSERT INTO `usuarios` (`id_user`, `nome`, `email`, `senha`, `nascimento`, `sobre`, `lembrancas`, `valores`, `aptidoes`, `familia`, `amigos`, `escola`, `sociedade`, `fisica`, `intelectual`, `emocional`, `vida_escolar`, `gosto`, `nao_gosto`, `rotina`, `lazer`, `estudos`, `data_criacao`) VALUES
+(20, '1', '1@gmail', '1', NULL, '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2025-02-26 13:37:19'),
+(21, 'joao', 'teste@gmail.com', '$2y$10$dbhDcl55EX5TURyvTWA5O.w69ipbevrMWBUyGcooBU7ULCdMBfiau', '2007-08-19', '', '', 0, '{\"0\":\"Comunica\\u00e7\\u00e3o\",\"1\":\"Criatividade\",\"3\":\"Coordena\\u00e7\\u00e3o Motora\",\"4\":\"Trabalho em Equipe\"}', 'teste', '', '', '', '', '', '', '', '', '', '', '', '', '2025-04-25 10:22:40');
 
 --
 -- Índices para tabelas despejadas
@@ -174,7 +193,7 @@ ALTER TABLE `quiz`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Restrições para tabelas despejadas
