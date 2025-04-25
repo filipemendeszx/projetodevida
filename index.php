@@ -3,6 +3,8 @@ session_start();
 require_once 'controllers/UserController.php';
 require_once 'Database.php';
 
+$userId = intval($_COOKIE['user_id']);
+
 $action = $_GET['action'] ?? '';
 
 $controller = new UserController();
@@ -33,7 +35,12 @@ switch ($action) {
             if ($controller->login($email, $senha)) {
                 header("Location: index.php?action=home");
             } else {
-                echo "Login ou senha inválidos.";
+                echo "<script>alert('Login ou senha inválidos')</script>";
+                echo "
+                <script>
+                    window.location.href = 'index.php?action=login';
+                </script>
+                ";
             }
         } else {
             include 'views/login.php';
@@ -41,7 +48,7 @@ switch ($action) {
         break;
 
     case 'home':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             include 'views/home.php';
         } else {
             header("Location: index.php?action=login");
@@ -50,25 +57,28 @@ switch ($action) {
 
     case 'logout':
         session_destroy();
-        unset($_COOKIE);
+        unset($_COOKIE['user_id']);
+        unset($_COOKIE['user_nome']);
+        unset($_COOKIE['user_email']);
+        unset($_COOKIE['user_name']);
         header("Location: index.php?action=login");
         break;
     case 'sobre':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             include 'views/sobre.php';
         } else {
             header("Location: index.php?action=home");
         }
         break;
     case 'quemsoueu':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             include 'views/quemsoueu.php';
         } else {
             header("Location: index.php?action=home");
         }
         break;
     case 'projeto':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
             include 'views/projeto.php';
         } else {
@@ -76,7 +86,7 @@ switch ($action) {
         }
         break;
     case 'metas':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
             include 'views/metas.php';
         } else {
@@ -84,7 +94,7 @@ switch ($action) {
         }
         break;
     case 'senha':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
             include 'views/senha.php';
         } else {
@@ -92,100 +102,58 @@ switch ($action) {
         }
         break;
     case 'planejamento':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             include 'views/planejamento.php';
         } else {
             header("Location: index.php?action=home");
         }
         break;
     case 'perfil':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             include 'view/perfil.php';
         } else {
             header("Location: index.php?action=home");
         }
         break;
     case 'salvar':
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             include 'ajax/salvar.php';
         } else {
             header("Location: index.php?action=home");
         }
         break;
-            header("Location: index.php?action=perfil");
-        }
-        break;
-    case 'sobre':
-        if (isset($_COOKIE['user_id'])) {
-            include 'views/sobre.php';
-        } else {
-            header("Location: index.php?action=home");
-        }
-        break;
-    case 'quemsoueu':
-        if (isset($_COOKIE['user_id'])) {
-            include 'views/quemsoueu.php';
-        } else {
-            header("Location: index.php?action=home");
-        }
-        break;
-    case 'projeto':
-        if (isset($_COOKIE['user_id'])) {
-            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
-            include 'views/projeto.php';
-        } else {
-            header("Location: index.php?action=senha");
-        }
-        break;
-    case 'metas':
-        if (isset($_COOKIE['user_id'])) {
-            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
-            include 'views/metas.php';
-        } else {
-            header("Location: index.php?action=senha");
-        }
-        break;
-    case 'senha':
-        if (isset($_COOKIE['user_id'])) {
-            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
-            include 'views/senha.php';
-        } else {
-            header("Location: index.php?action=senha");
-        }
-        break;
     case 'salvarQuemSouEu':
-        if (isset($_COOKIE['user_id'])) {
-            $nome = $_GET['nome'];
-            $nascimento = $_GET['nascimento'];
-            $sobre = $_GET['sobre'];
-            $lembrancas = $_GET['lembrancas'];
-            $valores = $_GET['valores'];
-            $aptidoes = $_GET['aptidoes'];
-            $familia = $_GET['familia'];
-            $amigos = $_GET['amigos'];
-            $escola = $_GET['escola'];
-            $sociedade = $_GET['sociedade'];
-            $fisica = $_GET['fisica'];
-            $intelectual = $_GET['intelectual'];
-            $emocional = $_GET['emocional'];
-            $vida_escolar = $_GET['vida_escolar'];
-            $gosto = $_GET['gosto'];
-            $nao_gosto = $_GET['nao_gosto'];
-            $rotina = $_GET['rotina'];
-            $lazer = $_GET['lazer'];
-            $estudos = $_GET['estudos'];
-            $id_user = $_COOKIE['user_id'];
+        if (isset($userId)) {
+            $nome = $_POST['nome'];
+            $nascimento = $_POST['nascimento'];
+            $sobre = $_POST['sobre'];
+            $lembrancas = $_POST['lembrancas'];
+            $valores = $_POST['valores'];
+            $aptidoes = $_POST['aptidoes'];
+            $familia = $_POST['familia'];
+            $amigos = $_POST['amigos'];
+            $escola = $_POST['escola'];
+            $sociedade = $_POST['sociedade'];
+            $fisica = $_POST['fisica'];
+            $intelectual = $_POST['intelectual'];
+            $emocional = $_POST['emocional'];
+            $vida_escolar = $_POST['vida_escolar'];
+            $gosto = $_POST['gosto'];
+            $nao_gosto = $_POST['nao_gosto'];
+            $rotina = $_POST['rotina'];
+            $lazer = $_POST['lazer'];
+            $estudos = $_POST['estudos'];
 
-            $controller->salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user);
-
+            $controller->salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $userId);
             header("Location: index.php?action=home");
         } else {
             header("Location: index.php?action=login");
         }
         break;
 
+    
     default:
-        if (isset($_COOKIE['user_id'])) {
+        if (isset($userId)) {
             header("Location: index.php?action=home");
         } else {
             header("Location: index.php?action=login");

@@ -1,6 +1,5 @@
 <?php
 require_once 'Database.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -21,7 +20,7 @@ require_once 'Database.php';
       
       <a href="index.php?action=sobre">Sobre mim &#9662;</a>
       <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
-      <a href="../index.php?action=logout">sair</a>
+      <a href="index.php?action=logout">sair</a>
     </nav>
   </header>
     <section class="card-section">

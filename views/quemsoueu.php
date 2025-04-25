@@ -1,14 +1,11 @@
 <?php
-require_once '../controllers/UserController.php';
-require_once '../Database.php';
+require_once 'controllers/UserController.php';
+require_once 'Database.php';
 $controller = new UserController();
 $user = $controller->buscarPorId($_COOKIE['user_id']);
-$aptidoes = json_decode($user['aptidoes']);
+$aptidoes = json_decode($user['skills']);
 $aptidoes = (array) $aptidoes;
 ?>
-
-<pre>
-</pre>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -43,20 +40,19 @@ $aptidoes = (array) $aptidoes;
 <main class="container">
     <h1 class="titulo">Quem sou eu?</h1>
 
-    <form action="../index.php" method="get">
+    <form action="index.php?action=salvarQuemSouEu" method="post">
         <section class="flex">
             <div class="bloco laranja quarenta">
                 <h2>Dados Pessoais</h2>
-                <input type="hidden" name="action" value="salvar">
-                <label>Nome:<input type="text" name="nome" value="<?= $user['nome'] ?>"></label>
+                <label>Nome:<input type="text" name="nome" value="<?= $user['name'] ?>"></label>
                 <label>Email:<input type="email" name="email" value="<?= $user['email'] ?>" disabled></label>
                 <label>Data de Nascimento:<input type="date" name="nascimento"
-                                                 value="<?= $user['nascimento'] ?>"></label>
+                                                 value="<?= $user['birthdate'] ?>"></label>
             </div>
 
             <div class="bloco verde sessenta">
                 <h2>Fale sobre você</h2>
-                <textarea name="sobre" rows="15" value="<?= $user['sobre'] ?>"></textarea>
+                <textarea name="sobre" rows="15"><?= $user['about'] ?></textarea>
             </div>
 
         </section>
@@ -64,12 +60,12 @@ $aptidoes = (array) $aptidoes;
         <section class="flex">
             <div class="bloco azul sessenta">
                 <h2>Minhas Lembranças</h2>
-                <textarea name="lembrancas" rows="10" value="<?= $user['lembrancas'] ?>"></textarea>
+                <textarea name="lembrancas" rows="10"><?= $user['memories'] ?></textarea>
             </div>
 
             <div class="bloco rosa quarenta">
                 <h2>Meus Valores</h2>
-                <textarea name="valores" rows="10" value="<?= $user['valores'] ?>"></textarea>
+                <textarea name="valores" rows="10"><?= $user['principles'] ?></textarea>
             </div>
 
         </section>
@@ -86,33 +82,33 @@ $aptidoes = (array) $aptidoes;
 
             <div class="bloco amarelo sessenta">
                 <h2>Meus Relacionamentos</h2>
-                <label>Família:<input type="text" name="familia" value="<?= $user['familia'] ?>"></label>
-                <label>Amigos:<input type="text" name="amigos" value="<?= $user['amigos'] ?>"></label>
-                <label>Escola:<input type="text" name="escola" value="<?= $user['escola'] ?>"></label>
-                <label>Sociedade:<input type="text" name="sociedade" value="<?= $user['sociedade'] ?>"></label>
+                <label>Família:<input type="text" name="familia" value="<?= $user['family'] ?>"></label>
+                <label>Amigos:<input type="text" name="amigos" value="<?= $user['friends'] ?>"></label>
+                <label>Escola:<input type="text" name="escola" value="<?= $user['school'] ?>"></label>
+                <label>Sociedade:<input type="text" name="sociedade" value="<?= $user['society'] ?>"></label>
             </div>
         </section>
         <section class="flex">
             <div class="bloco azul-claro sessenta">
                 <h2>Minha Visão Sobre Mim</h2>
-                <label>Física:<input type="text" name="fisica" value="<?= $user['fisica'] ?>"></label>
-                <label>Intelectual:<input type="text" name="intelectual" value="<?= $user['intelectual'] ?>"></label>
-                <label>Emocional:<input type="text" name="emocional" value="<?= $user['emocional'] ?>"></label>
+                <label>Física:<input type="text" name="fisica" value="<?= $user['physical'] ?>"></label>
+                <label>Intelectual:<input type="text" name="intelectual" value="<?= $user['intellectual'] ?>"></label>
+                <label>Emocional:<input type="text" name="emocional" value="<?= $user['emotional'] ?>"></label>
             </div>
 
             <div class="bloco verde-claro quarenta">
                 <h2>Minha Vida Escolar</h2>
-                <textarea name="vida_escolar" rows="15" value="<?= $user['vida_escolar'] ?>"></textarea>
+                <textarea name="vida_escolar" rows="15" value="<?= $user['school_life'] ?>"></textarea>
             </div>
         </section>
         <section class="flex">
             <div class="bloco laranja full cem">
                 <h2>Meu Dia a Dia</h2>
-                <label>O que gosto de fazer:<input type="text" name="gosto" value="<?= $user['gosto'] ?>"></label>
-                <label>O que não gosto:<input type="text" name="nao_gosto" value="<?= $user['nao_gosto'] ?>"></label>
-                <label>Rotina:<input type="text" name="rotina" value="<?= $user['rotina'] ?>"></label>
-                <label>Lazer:<input type="text" name="lazer" value="<?= $user['lazer'] ?>"></label>
-                <label>Estudos:<input type="text" name="estudos" value="<?= $user['estudos'] ?>"></label>
+                <label>O que gosto de fazer:<input type="text" name="gosto" value="<?= $user['likes'] ?>"></label>
+                <label>O que não gosto:<input type="text" name="nao_gosto" value="<?= $user['deslikes'] ?>"></label>
+                <label>Rotina:<input type="text" name="rotina" value="<?= $user['routine'] ?>"></label>
+                <label>Lazer:<input type="text" name="lazer" value="<?= $user['leisure'] ?>"></label>
+                <label>Estudos:<input type="text" name="estudos" value="<?= $user['studies'] ?>"></label>
 
             </div>
         </section>

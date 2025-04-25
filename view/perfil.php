@@ -1,21 +1,17 @@
 <?php
-require_once('config/conn.php');
-
+require_once 'Database.php';
+require_once 'controllers\UserController.php';
 
 // Verificar se o usuário está logado
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_COOKIE['user_id'])) {
     header('Location: index.php?action=login');
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_COOKIE['user_id'];
 
-// Buscar os dados do usuário no banco de dados
-$sql = "SELECT * FROM user WHERE id = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
-$stmt->execute();
-$user = $stmt->fetch();
+$controller = new UserController;
+$user = $controller->buscarPorId($_COOKIE['user_id']);
 
 if (!$user) {
     echo "Usuário não encontrado.";

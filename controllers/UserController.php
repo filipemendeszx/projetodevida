@@ -27,10 +27,10 @@ class UserController
         session_start();
         $user = $this->Model->login($email, $senha);
         if ($user) {
-
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-
+            setcookie('user_id', $user['id']);
+            setcookie('user_name', $user['name']);
+            setcookie('user_email', $user['email']);
+            
             return true;
         } else {
             return false;
