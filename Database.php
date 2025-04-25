@@ -1,16 +1,26 @@
 <?php
-    $host = "localhost";
-    $db_name = "projetovida";
-    $username = "root";
-    $password = "";
-    $pdo;
+class Database
+{
+// Conexão com banco de dados
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $db_name = "music";
 
-        $pdo = null;
+    public $pdo;
+
+    public function getConnection()
+    {
+        $this->pdo = null;
+
         try {
-            $pdo = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo = new PDO("mysql:host=" . $this->servername . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->pdo->exec("set names utf8");
         } catch (PDOException $exception) {
             echo "Erro de conexão: " . $exception->getMessage();
         }
-        return $pdo;
-?>
+
+        return $this->pdo;
+    }
+}
+
