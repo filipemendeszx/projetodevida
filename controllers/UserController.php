@@ -1,7 +1,8 @@
 <?php
 include_once 'C:\Turma2\xampp\htdocs\projetodevida\models\UserModel.php';
 
-class UserController {
+class UserController
+{
     private $Model;
 
     public function __construct() {
@@ -13,23 +14,23 @@ class UserController {
         if($this->Model->acharEmail($email)){
             return false;
         }
-        if($this->Model->acharNome($nome)){
+        if ($this->Model->acharNome($nome)) {
             return false;
         }
-        
-        $this->Model->cadastrar($nome,$email,$senha);
+
+        $this->Model->cadastrar($nome, $email, $senha);
         return true;
     }
 
-    public function login($email, $senha): bool
+    public function login($email, $senha)
     {
+        session_start();
+        $user = $this->Model->login($email, $senha);
+        if ($user) {
 
-        $user = $this->Model->login($email,$senha);
-        if ($user){
-            echo $_COOKIE['user_id'];
-            setcookie('user_id', $user['id_user']);
-            setcookie('user_email', $user['email']);
-            setcookie('user_nome', $user['nome']);
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+
             return true;
         } else {
             return false;
@@ -40,7 +41,8 @@ class UserController {
         $this->Model->salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user);
     }
 
-    public function trocarSenha($email, $senha) {
+    public function trocarSenha($email, $senha)
+    {
         $this->Model->trocarSenha($email, $senha);
     }
 
@@ -48,4 +50,3 @@ class UserController {
         return $this->Model->buscarPorId($user_id);
     }
 }
-

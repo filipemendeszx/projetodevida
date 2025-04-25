@@ -3,7 +3,7 @@
 class UserModel
 {
     private $pdo;
-    private $table_name = "usuarios";
+    private $table_name = "user";
 
     public function __construct()
     {
@@ -71,7 +71,7 @@ class UserModel
             return $useremail;
         }
 
-        $query = "SELECT * FROM " . $this->table_name . " WHERE nome = ?";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE name = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$email]);
 

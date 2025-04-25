@@ -53,10 +53,65 @@ switch ($action) {
         unset($_COOKIE);
         header("Location: index.php?action=login");
         break;
+    case 'sobre':
+        if (isset($_COOKIE['user_id'])) {
+            include 'views/sobre.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+    case 'quemsoueu':
+        if (isset($_COOKIE['user_id'])) {
+            include 'views/quemsoueu.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+    case 'projeto':
+        if (isset($_COOKIE['user_id'])) {
+            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+            include 'views/projeto.php';
+        } else {
+            header("Location: index.php?action=senha");
+        }
+        break;
+    case 'metas':
+        if (isset($_COOKIE['user_id'])) {
+            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+            include 'views/metas.php';
+        } else {
+            header("Location: index.php?action=senha");
+        }
+        break;
+    case 'senha':
+        if (isset($_COOKIE['user_id'])) {
+            $controller->trocarSenha($_POST['email'] ?? '', $_POST['senha'] ?? '');
+            include 'views/senha.php';
+        } else {
+            header("Location: index.php?action=senha");
+        }
+        break;
+    case 'planejamento':
+        if (isset($_COOKIE['user_id'])) {
+            include 'views/planejamento.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
     case 'perfil':
         if (isset($_COOKIE['user_id'])) {
-            include 'views/perfil.php';
+            include 'view/perfil.php';
         } else {
+            header("Location: index.php?action=home");
+        }
+        break;
+    case 'salvar':
+        if (isset($_COOKIE['user_id'])) {
+            include 'ajax/salvar.php';
+        } else {
+            header("Location: index.php?action=home");
+        }
+        break;
             header("Location: index.php?action=perfil");
         }
         break;
@@ -98,7 +153,7 @@ switch ($action) {
             header("Location: index.php?action=senha");
         }
         break;
-    case 'salvar':
+    case 'salvarQuemSouEu':
         if (isset($_COOKIE['user_id'])) {
             $nome = $_GET['nome'];
             $nascimento = $_GET['nascimento'];

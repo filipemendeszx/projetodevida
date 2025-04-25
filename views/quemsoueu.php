@@ -12,28 +12,31 @@ $aptidoes = (array) $aptidoes;
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto de Vida</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
 
-<header class="header">
-    <div class="title-group">
-        <div class="title">Projeto <span class="highlight">de vida</span></div>
-        <div class="subtitle">Filipe Mendes</div>
-    </div>
-    <nav class="botao">
-        <a href="#">Início</a>
-        <a href="../index.php?action=sobre">Sobre mim &#9662;</a>
-        <a href="../index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
-        <a href="../index.php?action=logout">sair</a>
-    </nav>
-</header>
+    <header class="header">
+        <div class="title-group">
+            <div class="title">Projeto <span class="highlight">de vida</span></div>
+            <div class="subtitle">Filipe Mendes</div>
+        </div>
+        <nav class="botao">
+            <a href="index.php?action=home">Início</a>
+            <a href="index.php?action=sobre">Sobre mim &#9662;</a>
+            <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
+            <a href="index.php?action=logout">sair</a>
+        </nav>
+    </header>
 
 </body>
+
 </html>
 <br>
 <br>
@@ -132,4 +135,5 @@ $aptidoes = (array) $aptidoes;
     </p>
 </footer>
 </body>
+
 </html>
