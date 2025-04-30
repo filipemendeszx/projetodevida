@@ -3,7 +3,7 @@ session_start();
 require_once 'controllers/UserController.php';
 require_once 'Database.php';
 
-$userId = intval($_COOKIE['user_id']);
+$userId = intval($_COOKIE['user_id']) ?? null;
 
 $action = $_GET['action'] ?? '';
 
