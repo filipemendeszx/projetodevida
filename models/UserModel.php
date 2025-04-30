@@ -99,7 +99,7 @@ class UserModel
             rotina = ?, 
             lazer = ?, 
             estudos = ? 
-        WHERE id_user = ?";
+        WHERE id = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user]);
     }
