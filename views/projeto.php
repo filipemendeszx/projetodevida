@@ -16,7 +16,7 @@
     <nav class="botao">
       <a href="#">Início</a>
       <a href="index.php?action=sobre">Sobre mim &#9662;</a>
-      <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
+      <a href="index.php?action=perfil"><img id="fotoPerfil" src="../view/imagem.php?id=<?= $_COOKIE['user_id'] ?>" alt="Foto de Perfil" class="profile"></a>
       <a href="index.php?action=logout">sair</a>
     </nav>
   </header>

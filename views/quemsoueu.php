@@ -1,14 +1,40 @@
 <?php
 require_once '../controllers/UserController.php';
-require_once '../Database.php';
 $controller = new UserController();
 $user = $controller->buscarPorId($_COOKIE['user_id']);
 $aptidoes = json_decode($user['aptidoes']);
-$aptidoes = (array) $aptidoes;
-?>
+$aptidoes = (array)$aptidoes;
 
-<pre>
-</pre>
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $nome = $_POST['name'];
+    $nascimento = $_POST['nascimento'];
+    $sobre = $_POST['sobre'];
+    $lembrancas = $_POST['lembrancas'];
+    $valores = $_POST['valores'];
+    $aptidoes = $_POST['aptidoes'];
+    $familia = $_POST['familia'];
+    $amigos = $_POST['amigos'];
+    $escola = $_POST['escola'];
+    $sociedade = $_POST['sociedade'];
+    $fisica = $_POST['fisica'];
+    $intelectual = $_POST['intelectual'];
+    $emocional = $_POST['emocional'];
+    $vida_escolar = $_POST['vida_escolar'];
+    $gosto = $_POST['gosto'];
+    $nao_gosto = $_POST['nao_gosto'];
+    $rotina = $_POST['rotina'];
+    $lazer = $_POST['lazer'];
+    $estudos = $_POST['estudos'];
+    $id_user = $_COOKIE['user_id'];
+
+    $controller->salvar($nome, $nascimento, $sobre, $lembrancas, $valores, $aptidoes, $familia, $amigos, $escola, $sociedade, $fisica, $intelectual, $emocional, $vida_escolar, $gosto, $nao_gosto, $rotina, $lazer, $estudos, $id_user);
+
+    header("Refresh: 0");
+
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,23 +43,23 @@ $aptidoes = (array) $aptidoes;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto de Vida</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="title-group">
-            <div class="title">Projeto <span class="highlight">de vida</span></div>
-            <div class="subtitle">Filipe Mendes</div>
-        </div>
-        <nav class="botao">
-            <a href="index.php?action=home">Início</a>
-            <a href="index.php?action=sobre">Sobre mim &#9662;</a>
-            <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
-            <a href="index.php?action=logout">sair</a>
-        </nav>
-    </header>
+<header class="header">
+    <div class="title-group">
+        <div class="title">Projeto <span class="highlight">de vida</span></div>
+        <div class="subtitle">Filipe Mendes</div>
+    </div>
+    <nav class="botao">
+        <a href="home.php">Início</a>
+        <a href="sobre.php">Sobre mim &#9662;</a>
+        <a href="../view/perfil.php"><img id="fotoPerfil" src="../view/imagem.php?id=<?= $_COOKIE['user_id'] ?>" alt="Foto de Perfil" class="profile"></a>
+        <a href="logout.php">sair</a>
+    </nav>
+</header>
 
 </body>
 
@@ -43,12 +69,12 @@ $aptidoes = (array) $aptidoes;
 <main class="container">
     <h1 class="titulo">Quem sou eu?</h1>
 
-    <form action="../index.php" method="get">
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <section class="flex">
             <div class="bloco laranja quarenta">
                 <h2>Dados Pessoais</h2>
                 <input type="hidden" name="action" value="salvar">
-                <label>Nome:<input type="text" name="nome" value="<?= $user['nome'] ?>"></label>
+                <label>Nome:<input type="text" name="name" value="<?= $user['name'] ?>"></label>
                 <label>Email:<input type="email" name="email" value="<?= $user['email'] ?>" disabled></label>
                 <label>Data de Nascimento:<input type="date" name="nascimento"
                                                  value="<?= $user['nascimento'] ?>"></label>
@@ -56,7 +82,7 @@ $aptidoes = (array) $aptidoes;
 
             <div class="bloco verde sessenta">
                 <h2>Fale sobre você</h2>
-                <textarea name="sobre" rows="15" value="<?= $user['sobre'] ?>"></textarea>
+                <textarea name="sobre" rows="15" value="<?= $user['sobre'] ?>"><?= $user['sobre'] ?></textarea>
             </div>
 
         </section>
@@ -77,11 +103,26 @@ $aptidoes = (array) $aptidoes;
         <section class="flex">
             <div class="bloco roxo quarenta">
                 <h2>Minhas Aptidões</h2>
-                <label><input type="checkbox" name="aptidoes[0]" value="Comunicação" <?php if (in_array('Comunicação', $aptidoes) != false) { echo 'checked'; } ?> >Comunicação</label>
-                <label><input type="checkbox" name="aptidoes[1]" value="Criatividade" <?php if (in_array('Criatividade', $aptidoes) != false) { echo 'checked'; } ?>> Criatividade</label>
-                <label><input type="checkbox" name="aptidoes[2]" value="Disciplina" <?php if (in_array('Disciplina', $aptidoes) != false) { echo 'checked'; } ?>> Disciplina</label>
-                <label><input type="checkbox" name="aptidoes[3]" value="Coordenação Motora" <?php if (in_array('Coordenação Motora', $aptidoes) != false) { echo 'checked'; } ?> > Coordenação Motora</label>
-                <label><input type="checkbox" name="aptidoes[4]" value="Trabalho em Equipe" <?php if (in_array('Trabalho em Equipe', $aptidoes) != false) { echo 'checked'; } ?>> Trabalho em Equipe</label>
+                <label><input type="checkbox" name="aptidoes[0]"
+                              value="Comunicação" <?php if (in_array('Comunicação', $aptidoes) != false) {
+                        echo 'checked';
+                    } ?> >Comunicação</label>
+                <label><input type="checkbox" name="aptidoes[1]"
+                              value="Criatividade" <?php if (in_array('Criatividade', $aptidoes) != false) {
+                        echo 'checked';
+                    } ?>> Criatividade</label>
+                <label><input type="checkbox" name="aptidoes[2]"
+                              value="Disciplina" <?php if (in_array('Disciplina', $aptidoes) != false) {
+                        echo 'checked';
+                    } ?>> Disciplina</label>
+                <label><input type="checkbox" name="aptidoes[3]"
+                              value="Coordenação Motora" <?php if (in_array('Coordenação Motora', $aptidoes) != false) {
+                        echo 'checked';
+                    } ?> > Coordenação Motora</label>
+                <label><input type="checkbox" name="aptidoes[4]"
+                              value="Trabalho em Equipe" <?php if (in_array('Trabalho em Equipe', $aptidoes) != false) {
+                        echo 'checked';
+                    } ?>> Trabalho em Equipe</label>
             </div>
 
             <div class="bloco amarelo sessenta">

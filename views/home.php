@@ -1,6 +1,10 @@
 <?php
-require_once 'Database.php';
+require_once '../config/Database.php';
+session_start();
 
+if (!isset($_COOKIE['user_id'])) {
+    header('Location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -8,7 +12,7 @@ require_once 'Database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto de vida</title>
-    <link rel="stylesheet" href="style/estileira.css">
+    <link rel="stylesheet" href="../style/estileira.css">
 </head>
 <body>
   
@@ -19,9 +23,9 @@ require_once 'Database.php';
     </div>
     <nav class="botao">
       
-      <a href="index.php?action=sobre">Sobre mim &#9662;</a>
-      <a href="index.php?action=perfil"><img src="Filipe.png" alt="Perfil" class="profile"></a>
-      <a href="index.php?action=logout">sair</a>
+      <a href="sobre.php">Sobre mim &#9662;</a>
+      <a href="../view/perfil.php"><img id="fotoPerfil" src="../view/imagem.php?id=<?= $_COOKIE['user_id'] ?>" alt="Foto de Perfil" class="profile"></a>
+      <a href="logout.php">sair</a>
     </nav>
   </header>
     <section class="card-section">
@@ -35,7 +39,7 @@ require_once 'Database.php';
             Descubra mais sobre você agora!
           </p>
         </div>
-        <a href="index.php?action=quemsoueu">
+        <a href="quemsoueu.php">
         <div class="card">
           <h2>Quem sou eu ?</h2>
           <p>
@@ -46,7 +50,7 @@ require_once 'Database.php';
           </p>
         </div></a>
     </div>
-<a href="index.php?action=planejamento">
+<a href="planejamento.php">
     <div class="card-line">
         <div class="card">
           <h2>Planejamento de futuro</h2>
@@ -57,7 +61,7 @@ require_once 'Database.php';
             Não existe um caminho certo — existe o seu caminho. E ele começa agora.
           </p>
         </div></a>
-       <a href="index.php?action=metas"> <div class="card">
+       <a href="metas.php"> <div class="card">
           <h2>Plano de Ação<br>(Tomando Decisões)</h2>
           <p>
             Tomar decisões nem sempre é fácil, mas é essencial para quem deseja transformar sonhos em realidade.

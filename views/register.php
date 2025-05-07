@@ -1,10 +1,28 @@
+<?php
+session_start();
+use UserController\UserController;
+$error = '';
+if (!empty($_POST)) {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $controller = new UserController();
+    if ($controller->register($nome, $email, $senha)) {
+        header("Location: home.php");
+    } else {
+        $error = "Erro ao cadastrar usuário";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - ecp-saberes</title>
-    <link rel="stylesheet" href="style/estilo.css">
+    <link rel="stylesheet" href="../style/estilo.css">
 </head>
 <body>
 <div class="main">
@@ -31,7 +49,7 @@
                 <button type="submit" class="login-btn">Entrar</button>
                 <?php
                     if(!empty($_POST)){
-                        echo "errou a senha! tem que ser igual!!";
+                        echo $error;
                     }
                 ?>
                 <p class="signup-text">ja tem uma conta? <a href="index.php?action=login">fazer login</a>.</p>

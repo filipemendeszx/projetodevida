@@ -1,6 +1,7 @@
 <?php
-include_once 'C:\Turma2\xampp\htdocs\projetodevida\models\UserModel.php';
 
+
+require_once '../models/UserModel.php';
 class UserController
 {
     private $Model;
@@ -19,18 +20,18 @@ class UserController
             return false;
         }
         
-        $this->Model->cadastrar($nome,$email,$senha);
-        return true;
+        if ($this->Model->cadastrar($nome,$email,$senha)) {
+            return true;
+        }
     }
 
     public function login($email, $senha): bool
     {
         $user = $this->Model->login($email,$senha);
-        
         if ($user){
-            setcookie('user_id', $user['id_user']);
-            setcookie('user_email', $user['email']);
-            setcookie('user_nome', $user['nome']);
+            setcookie('user_id', $user['id'], time()+60*60*24*7, "/");
+            setcookie('user_email', $user['email'], time()+60*60*24*7, "/");
+            setcookie('user_name', $user['name'], time()+60*60*24*7, "/");
             return true;
         } else {
             return false;
@@ -49,5 +50,29 @@ class UserController
 
     public function buscarPorId($user_id) {
         return $this->Model->buscarPorId($user_id);
+    }
+
+    public function salvarImagem($file, $user_id) {
+        $this->Model->salvarImagem($file, $user_id);
+    }
+
+    public function buscarImagem($user_id) {
+        $this->Model->buscarImagem($user_id);
+    }
+
+    public function buscarPlanejamentoFuturo($userId) {
+        return $this->Model->buscarPlanejamentoFuturo($userId);
+    }
+
+    public function salvarPlanejamentoFuturo($dados) {
+        return $this->Model->salvarPlanejamentoFuturo($dados);
+    }
+
+    public function getMelhoriasPessoais($userId) {
+        return $this->Model->getMelhoriasPessoais($userId);
+    }
+
+    public function salvarMelhoriasPessoais($userId, $dados) {
+        return $this->Model->salvarMelhoriasPessoais($userId, $dados);
     }
 }

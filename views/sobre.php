@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quem sou eu?</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <header>
@@ -29,7 +29,7 @@
 
         <div class="flex">
             <div class="img">
-                <img src="Filipe.png" alt="">
+                <img src="../Projeto%20de%20Vida_files/Filipe.png" alt="">
             </div>
             <div class="texto">
                 <p> Filipe, 17 anos , curso Análise de Sistemas no SENAI. Gosto de desafios e busco sempre evoluir pessoal e profissionalmente. Sou apaixonado por esportes, pois acredito que ajudam no foco, na disciplina e no trabalho em equipe. Meu objetivo é construir um futuro sólido e alcançar grandes conquistas em minha trajetória.

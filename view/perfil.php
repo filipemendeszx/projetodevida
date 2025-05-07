@@ -1,21 +1,18 @@
 <?php
-require_once('config/conn.php');
-
-
+require_once '../config/Database.php';
+require_once '../controllers/UserController.php';
+session_start();
 // Verificar se o usuário está logado
 if (!isset($_COOKIE['user_id'])) {
-    header('Location: index.php?action=login');
+    header('Location: ../views/login.php');
     exit();
 }
 
 $user_id = $_COOKIE['user_id'];
+$controller = new UserController();
+$user = $controller->buscarPorId($user_id);
 
-// Buscar os dados do usuário no banco de dados
-$sql = "SELECT * FROM user WHERE id = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
-$stmt->execute();
-$user = $stmt->fetch();
+
 
 if (!$user) {
     echo "Usuário não encontrado.";
@@ -132,8 +129,8 @@ if (!$user) {
 
 <div class="perfil-container">
     <div class="perfil-foto">
-        <form id="formulario" action="index.php?action=salvar" method="post" enctype="multipart/form-data">
-            <img id="fotoPerfil" src="view/imagem.php?id=<?= $user_id ?>" alt="Foto de Perfil">
+        <form id="formulario" action="../ajax/salvar.php" method="post" enctype="multipart/form-data">
+            <img id="fotoPerfil" src="imagem.php?id=<?= $user_id ?>" alt="Foto de Perfil">
             <br><br>
             <label for="foto">Inserir Foto</label>
             <input type="file" name="foto" class="form-control" />
@@ -151,13 +148,13 @@ if (!$user) {
             <input type="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>">
 
             <label>Data de Nascimento: <span class="glyphicon glyphicon-edit icone-editar"></span></label>
-            <input type="date" name="data_nascimento" value="<?= htmlspecialchars($user['birthdate'] ?? '') ?>">
+            <input type="date" name="data_nascimento" value="<?= htmlspecialchars($user['data_nascimento'] ?? '') ?>">
 
             <label>Senha: <span class="glyphicon glyphicon-edit icone-editar"></span></label>
             <input type="password" name="senha">
 
             <label style="margin-top:20px;">Sobre mim:</label>
-            <textarea name="sobre_mim" placeholder="Escreva algo sobre você..."><?= htmlspecialchars($user['sobre_mim'] ?? '') ?></textarea>
+            <textarea name="sobre_mim" placeholder="Escreva algo sobre você..."><?= htmlspecialchars($user['sobre'] ?? '') ?></textarea>
 
             <button class="btn btn-primary btn-sm" style="margin-top:10px;" type="submit">Salvar Alterações</button>
         </form>

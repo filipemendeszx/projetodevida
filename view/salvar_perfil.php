@@ -33,7 +33,7 @@ try {
         $stmt->bindParam(':senha', $senhaHash);
     } else {
         $sql = "UPDATE user
-                SET name = :nome, email = :email, birthdate = :data_nascimento, sobre_mim = :sobre_mim
+                SET name = :nome, email = :email, nascimento = :data_nascimento, sobre = :sobre_mim
                 WHERE id = :user_id";
         $stmt = $pdo->prepare($sql);
     }
