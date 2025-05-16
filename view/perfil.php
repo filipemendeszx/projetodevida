@@ -22,9 +22,27 @@ if (!$user) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="../style/estileira.css">
+</head>
+  
+<header class="header">
+    <div class="title-group">
+        <div class="title">Projeto <span class="highlight">de vida</span></div>
+        <div class="subtitle">Filipe Mendes</div>
+    </div>
+    <nav class="botao">
+        <a href="../views/home.php">Início</a>
+        <a href="../views/sobre.php">Sobre mim </a>
+        <a href="logout.php">sair</a>
+    </nav>
+</header>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://malsup.github.io/jquery.form.min.js"></script>
@@ -44,7 +62,7 @@ if (!$user) {
 
         .perfil-foto {
             width: 250px;
-            background-color: #162136;
+            background-color:#FCA311;
             color: white;
             text-align: center;
             padding: 30px 20px;
@@ -62,7 +80,7 @@ if (!$user) {
 
         .perfil-formulario {
             flex: 1;
-            background-color: #162136;
+            background-color:#583319;
             color: white;
             padding: 30px;
             border-top-right-radius: 10px;
@@ -99,9 +117,160 @@ if (!$user) {
             cursor: pointer;
             color: white;
         }
-
+a:hover{
+    text-decoration: none;
+    color: #f4f4f4;
+}
         .alert {
             margin-top: 10px;
+            /* header */
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #563218;
+    color: #000000;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+body:has(.musicaslistar) {
+    justify-content: flex-start;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-box {
+    width: 400px;
+    height: 500px;
+    padding: 40px;
+    background-color: #fff9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.login-box2 {
+    width: 400px;
+    height: 500px;
+    padding: 40px;
+    background-color: #fff9f9;
+    height: 100%;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2em;
+
+}
+
+.login-box2 h1 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-decoration: underline 4px solid #ffc760;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background-color: #e9e3e3;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+
+
+
+.login-btn {
+    background-color: #85450A;
+    border: none;
+    padding: 15px;
+    color: #FCBD43;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+    border-radius: 15px;
+}
+
+
+
+
+
+
+
+.login-box form h6,h5{
+    font-size: 15px;
+    text-align: left;
+    
+}
+
+
+.main h1{
+    font-size: 65px;
+    color: white;
+}
+
+.login-box h1{
+    color: #000000 !important;
+    font-size: 45px;
+}
+.main label{
+    font-size: 65px;
+    color: #FBA727;
+}
+
+.main h3 {
+    color: #FCBD43;
+    font-size: 25px;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #563218;
+}
+.titulo{
+    gap: 18px;
+}
+.login {
+    color: black;
+}
+
+
+.signup-text a {
+    list-style: none;
+    text-decoration: none;
+    color: #FBA727;
+}
         }
     </style>
 
@@ -160,6 +329,14 @@ if (!$user) {
         </form>
     </div>
 </div>
-
+<footer class="footer">
+    <p> © 2025 Projeto de vida. Todos os Direitos Reservados.</p>
+    <p>
+        Powered by
+        <a href="https://www.instagram.com/filipeemendesx/" target="_blank">
+            https://www.instagram.com/filipemendesx
+        </a>
+    </p>
+</footer>
 </body>
 </html>

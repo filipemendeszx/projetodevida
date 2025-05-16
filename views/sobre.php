@@ -14,7 +14,7 @@
     </div>
     <div class="subtitulo">Filipe Mendes</div>
     <div class="voltar">
-        <a href="index.php?action=home"><img src="arrow.png" alt=""></a>
+        <a href="home.php"><img src="../arrow.png" alt=""></a>
     </div>
 </header>
 <br>
@@ -51,7 +51,7 @@
                 </p>
             </div>
             <div class="img">
-                <img src="brasao.jpg" alt="">
+                <img src="../brasao.jpg" alt="">
             </div>
 
         </div>
@@ -65,7 +65,7 @@
 
         <div class="flex">
             <div class="img">
-                <img src="bbarro.jpg" alt="">
+                <img src="../bbarro.jpg" alt="">
             </div>
             <div class="texto">
                 <p>Gostaria de seguir a carreira militar por diversos motivos, entre eles o respeito e a admiração que tenho pela instituição. Além disso, vejo na vida militar a oportunidade de desenvolver disciplina, liderança e servir ao meu país com honra e dedicação. A estabilidade e os desafios da profissão também são fatores que me motivam a trilhar esse caminho.
@@ -96,7 +96,7 @@
 
             </div>
             <div class="img">
-                <img src="focar.jpg" alt="">
+                <img src="../focar.jpg" alt="">
             </div>
 
         </div>
@@ -110,7 +110,7 @@
 
         <div class="flex">
             <div class="img">
-                <img src="senai.jpg" alt="">
+                <img src="../senai.jpg" alt="">
             </div>
             <div class="texto">
                 <p> O SENAI me ajudou bastante a entrar no mundo da tecnologia, pois antes eu não tinha nenhuma experiência na área. Através do curso, pude adquirir conhecimento, desenvolver novas habilidades e ter uma visão mais clara sobre o mercado e minhas oportunidades futuras.

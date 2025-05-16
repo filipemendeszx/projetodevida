@@ -7,7 +7,7 @@ class Database
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $db_name = "projetovida";
+    private $db_name = "projeto_vida_filipe";
 
     public $pdo;
 

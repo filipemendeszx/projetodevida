@@ -35,7 +35,7 @@ if (!empty($_POST)) {
 <body>
 <div class="main">
     <div class="titulo">
-        <h1>Projeto</h1> <label> de vida </label>
+        <h1>Projeto<label> de vida </label></h1>
     </div>
     <h3>Filipe Mendes</h3>
     <div class="login-container">
@@ -44,7 +44,7 @@ if (!empty($_POST)) {
             <br>
             <br>
             <br>
-            <form action="../../index.php" method="post">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
                 <h6>E-mail</h6>
                 <input type="text" name="email" placeholder="Email" required>
                 <H5>Senha</H5>

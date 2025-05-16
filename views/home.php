@@ -28,7 +28,7 @@ if (!isset($_COOKIE['user_id'])) {
       <a href="logout.php">sair</a>
     </nav>
   </header>
-    <section class="card-section">
+   <a href="../quiz.php"> <section class="card-section">
     <div class="card-line">
         <div class="card">
           <h2>Teste sua Personalidade: Descubra <br> Mais Sobre Você!</h2>
@@ -38,7 +38,7 @@ if (!isset($_COOKIE['user_id'])) {
             Este teste rápido vai ajudá-lo a entender melhor seus pontos fortes, sua abordagem diante de desafios e como você encara o dia a dia.
             Descubra mais sobre você agora!
           </p>
-        </div>
+        </div></a>
         <a href="quemsoueu.php">
         <div class="card">
           <h2>Quem sou eu ?</h2>

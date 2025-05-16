@@ -113,7 +113,7 @@ if ($userId) {
         </div>
 
         <div class="card">
-            <h2>Namorado(a)</h2>
+            <h2>Namorada(o)</h2>
             <div class="label">Como irei fazer para melhorar</div>
             <textarea name="namorado_melhoria"><?= $melhorias['namorado_melhoria'] ?? '' ?></textarea>
             <div class="label">Prazo para essa ação</div>

@@ -10,7 +10,7 @@ class UserController
         $this->Model = new UserModel();
     }
 
-    public function register($nome, $email, $senha): bool
+    public function register($nome, $email, $senha)
     {
         if($this->Model->acharEmail($email)){
             return false;

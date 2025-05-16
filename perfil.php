@@ -30,24 +30,24 @@ if(isset($_POST["operacao"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify - Página Inicial</title>
+
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
   
-<header>
-        <div class="logo">
-            <a href="index.php?action=home">
-                <img src="img\image__1_-removebg-preview (2).png" alt="Ispotify" >
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li> <img src="img\avatar (1).png" alt="" height="38" width="38"><a href="index.php?action=perfil"><H2>Minha conta</H2></a></li>
-                <li> <img src="img\sair (1).png" alt="BOA TARDE DANADÃO" height="38" width="38"><a href="index.php?action=logout"><h2>LogOut</h2></a></li>
-            </ul>    
-        </nav>
-    </header>
-    <div class="login-container">   
+
+<header class="header">
+    <div class="title-group">
+      <div class="title">Projeto <span class="highlight">de vida</span></div>
+      <div class="subtitle">Filipe Mendes</div>
+    </div>
+    <nav class="botao">
+      
+      <a href="sobre.php">Sobre mim &#9662;</a>
+      <a href="../view/perfil.php"><img id="fotoPerfil" src="../view/imagem.php?id=<?= $_COOKIE['user_id'] ?>" alt="Foto de Perfil" class="profile"></a>
+      <a href="logout.php">sair</a>
+    </nav>
+  </header>
         <div class="login-box2">
             <h1>Criar Artigo</h1>
     <form method="POST">

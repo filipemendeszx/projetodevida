@@ -4,7 +4,7 @@
 $host = 'localhost';
 $usuario = 'root';
 $senha = '';
-$banco = 'projetovida';
+$banco = 'projeto_vida_filipe';
 $dsn = "mysql:host={$host};port=3306;dbname={$banco}";
 
 try

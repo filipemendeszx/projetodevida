@@ -35,7 +35,7 @@ class UserModel
         $email = htmlspecialchars(strip_tags($email));
         $senha = password_hash($senha, PASSWORD_DEFAULT);
 
-        $stmt->execute([$senha, $email]);
+        return $stmt->execute([$senha, $email]);
     }
 
     public function acharEmail($email)

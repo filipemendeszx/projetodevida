@@ -61,8 +61,11 @@ h2 {
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+      flex-direction: column;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
 }
 
 input {
@@ -133,7 +136,6 @@ input {
     background-color: #563218;
 }
 .titulo{
-    display: flex;
     gap: 18px;
 }
 .login {
@@ -466,7 +468,7 @@ body {
   body {
     font-family: Arial, sans-serif;
     background: #fff;
-    
+    width: 100%;
     text-align: center;
   }
 
@@ -482,6 +484,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
     gap: 20px;
+    width: 100%;
   }
 
   .card {
@@ -541,3 +544,143 @@ body {
   *{
     text-decoration: none;
   }
+
+
+
+
+/* responsivel quemsoueu.php */
+
+/* ===== RESPONSIVIDADE ===== */
+/* ===== RESPONSIVIDADE APROPRIADA ===== */
+@media (max-width: 768px) {
+
+  /* Adapta os blocos de flexbox */
+  .flex {
+      flex-direction: column !important;
+      display: flex;
+        width: fit-content;
+  }
+
+  /* Faz os blocos ocuparem 100% da largura */
+  .quarenta,
+  .sessenta,
+  .full,
+  .cem {
+      width: 100% !important;
+      flex: none !important;
+  }
+
+  /* Ajusta os títulos dos blocos */
+  .bloco h2 {
+      text-align: center;
+  }
+
+  /* Ajusta o cabeçalho para a coluna */
+  .header {
+      flex-direction: column !important;
+      align-items: center;
+      text-align: center;
+  }
+
+  .title-group {
+      margin-bottom: 1rem;
+  }
+
+  /* Navegação ajustada para mobile */
+  .header .botao {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+  }
+
+  .botao a {
+      display: block;
+      padding: 0.5rem;
+      font-size: 1rem;
+  }
+
+  /* Ajusta o perfil para ficar no centro */
+  .profile {
+      width: 50px;
+      height: 50px;
+      margin: 0.5rem 0;
+  }
+
+  /* Inputs e textareas ocupando 100% */
+  textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="date"] {
+      width: 100% !important;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+  }
+
+  /* Adapta os botões para o tamanho correto */
+  .limpar,
+  .enviar {
+      width: 100%;
+      text-align: center;
+      margin: 1rem 0;
+  }
+
+  button[type="submit"],
+  input[type="reset"] {
+      width: 90%;
+      max-width: 300px;
+      margin: 0.5rem auto;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+  }
+
+  /* Ajusta o footer */
+  .footer {
+      padding: 1rem;
+      font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .container{
+    flex-direction: column;
+    align-content: center;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .botao {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-line {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .profile {
+    width: 35px;
+    height: 35px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+}
+

@@ -120,5 +120,45 @@ body {
   .footer a:hover {
     color: #ffb84d;
   }
+
+  
+  /* responsivel home */
+
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .botao {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .card-line {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .card {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .profile {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .title {
+      font-size: 1.6rem;
+    }
+  
+    .subtitle {
+      font-size: 1.1rem;
+    }
+  }
   
   
